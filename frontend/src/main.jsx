@@ -5,6 +5,7 @@ import "./index.css";
 import { ClerkProvider } from "@clerk/clerk-react";
 
 import RegisterScreen from "./screens/RegisterScreen.jsx";
+import LoginScreen from "./screens/LoginScreen.jsx";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index path="/" element={<HomeScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
     </Route>
   )
 );
