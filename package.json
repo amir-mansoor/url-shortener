@@ -1,15 +1,21 @@
 {
   "name": "url-shortener",
   "version": "1.0.0",
+  "type": "module",
   "description": "url shortener backend",
   "main": "server.js",
   "scripts": {
-    "start": "cd frontend && npm run dev"
+    "start": "cd frontend && npm run dev",
+    "server": "cd backend && nodemon server.js"
   },
   "author": "Amir Mansoor",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongoose": "^8.5.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }

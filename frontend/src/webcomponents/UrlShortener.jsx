@@ -12,9 +12,9 @@ const UrlShortener = () => {
         Sign up for a free account <br /> and put ShortLy to work
       </h1>
 
-      <div className="bg-white w-[50%]  mx-auto mt-5 rounded-md py-5 px-5 text-left">
+      <div className="bg-white w-[50%]  mx-auto mt-5 rounded-md py-5 px-5 text-left ">
         <h1 className="font-bold text-2xl">Shorten a long link</h1>
-        <p>No credit card required</p>
+        <p className="text-gray-400">No credit card required</p>
 
         <div className="mt-4">
           <h1 className="font-bold">Paste your long link here</h1>

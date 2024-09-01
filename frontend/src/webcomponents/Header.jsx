@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { SignedIn, useAuth, UserButton, useUser } from "@clerk/clerk-react";
 const Header = () => {
   const { isSignedIn } = useAuth();
+  const { user } = useUser();
 
+  console.log(user?.id);
   return (
     <div className="bg-[#1b2a41]">
       <header className="container">
@@ -13,9 +15,12 @@ const Header = () => {
 
           <div className="space-x-3 font-bold text-xl">
             {isSignedIn ? (
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
+              <div className="flex items-center space-x-3">
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
+                <Link to="/dashboard">Dashboard</Link>
+              </div>
             ) : (
               <>
                 <Link to="/register">Register</Link>
