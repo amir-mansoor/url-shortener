@@ -1,8 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import axios from "axios";
+
+import React, { useState } from "react";
 
 const UrlShortener = () => {
+  const [url, setUrl] = useState("");
+  const [link, setLink] = useState("");
+
+  const createShortLink = async () => {
+    if (url.trim() === "") {
+      return;
+    }
+
+    const res = await axios.post("http://localhost:5000/api/link/create", {
+      link: url,
+    });
+    setLink(res.data);
+  };
+
   return (
     <div className="h-[60vh] text-center container ">
       <h3 className="uppercase py-2 pt-5 text-orange-500 font-bold text-3xl">
@@ -21,9 +37,22 @@ const UrlShortener = () => {
           <Input
             placeholder="https://example.com/my-long-url"
             className="mt-3"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
           />
-          <Button className="mt-2">Get Your Link For Free</Button>
+          <Button onClick={createShortLink} className="mt-2">
+            Get Your Link For Free
+          </Button>
         </div>
+        {link && (
+          <a
+            className="mt-2 font-bold text-blue-600"
+            target="_href"
+            href={link}
+          >
+            {link}
+          </a>
+        )}
       </div>
     </div>
   );

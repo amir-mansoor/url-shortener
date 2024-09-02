@@ -4,12 +4,15 @@ import connectDB from "./config/connectDB.js";
 import path from "path";
 import notFound from "./middleware/errorHandler.js";
 import linkRoutes from "./routes/linkRoutes.js";
+import cors from "cors";
 const app = express();
 
 const __dirname = path.resolve();
 dotenv.config({ path: __dirname + "/.env" });
 
 connectDB();
+app.use(cors());
+app.use(express.json());
 
 app.use("/api/link", linkRoutes);
 app.use(notFound);
