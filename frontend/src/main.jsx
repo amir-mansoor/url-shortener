@@ -14,6 +14,8 @@ import {
 } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen.jsx";
 import RedirectScreen from "./screens/RedirectScreen.jsx";
+import DashboardScreen from "./screens/DashboardScreen.jsx";
+import LinkScreen from "./screens/LinkScreen.jsx";
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -29,6 +31,8 @@ const router = createBrowserRouter(
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/:id" element={<RedirectScreen />} />
+      <Route path="/dashboard" element={<DashboardScreen />} />
+      <Route path="/link/:id" element={<LinkScreen />} />
     </Route>
   )
 );

@@ -57,4 +57,26 @@ const redirectUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { createLink, redirectUser };
+const getUserLinks = asyncHandler(async (req, res) => {
+  const links = await Link.find({ userId: req.params.id }).select("-locations");
+  if (links) {
+    res.status(200).json(links);
+  } else {
+    res.status(400).json("You have no links");
+  }
+});
+
+const getLinkDetails = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const link = await Link.findById(id);
+
+  if (link) {
+    res.status(200);
+    res.json(link);
+  } else {
+    res.status(400).json("No link found");
+  }
+});
+
+export { createLink, redirectUser, getUserLinks, getLinkDetails };
