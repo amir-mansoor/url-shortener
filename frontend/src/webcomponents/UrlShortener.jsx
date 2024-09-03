@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
 
 import React, { useState } from "react";
 
 const UrlShortener = () => {
+  const { user } = useUser();
   const [url, setUrl] = useState("");
   const [link, setLink] = useState("");
 
@@ -15,6 +17,7 @@ const UrlShortener = () => {
 
     const res = await axios.post("http://localhost:5000/api/link/create", {
       link: url,
+      userid: user?.id,
     });
     setLink(res.data);
   };

@@ -13,6 +13,7 @@ import {
   Route,
 } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen.jsx";
+import RedirectScreen from "./screens/RedirectScreen.jsx";
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -27,14 +28,13 @@ const router = createBrowserRouter(
       <Route index path="/" element={<HomeScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/login" element={<LoginScreen />} />
+      <Route path="/:id" element={<RedirectScreen />} />
     </Route>
   )
 );
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
-      <RouterProvider router={router} />
-    </ClerkProvider>
-  </StrictMode>
+  <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+    <RouterProvider router={router} />
+  </ClerkProvider>
 );

@@ -10,8 +10,17 @@ const app = express();
 const __dirname = path.resolve();
 dotenv.config({ path: __dirname + "/.env" });
 
-connectDB();
+const corsOptions = {
+  origin: "http://localhost:5173", // Replace with your frontend's origin
+  methods: ["GET", "POST"], // Allow only GET and POST methods
+};
+
+// Apply CORS middleware with the above options
 app.use(cors());
+app.set("trust proxy", true);
+
+connectDB();
+
 app.use(express.json());
 
 app.use("/api/link", linkRoutes);

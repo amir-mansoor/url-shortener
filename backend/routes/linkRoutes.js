@@ -1,6 +1,8 @@
 import express from "express";
-import { createLink } from "../controllers/linkController.js";
+import { createLink, redirectUser } from "../controllers/linkController.js";
 const router = express.Router();
+
+router.route("/:id").get(redirectUser);
 
 router.route("/create").post(createLink);
 
