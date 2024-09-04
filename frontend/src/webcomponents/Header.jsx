@@ -4,7 +4,6 @@ const Header = () => {
   const { isSignedIn } = useAuth();
   const { user } = useUser();
 
-  console.log(user?.id);
   return (
     <div className="bg-[#1b2a41]">
       <header className="container">

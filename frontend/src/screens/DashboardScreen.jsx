@@ -1,12 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { useUser } from "@clerk/clerk-react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const DashboardScreen = () => {
   const { user } = useUser();
   const [userLinks, setUserLinks] = useState(null);
+
+  const { isSignedIn } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      navigate("/");
+    }
+  }, [isSignedIn]);
 
   useEffect(() => {
     const getLinks = async () => {

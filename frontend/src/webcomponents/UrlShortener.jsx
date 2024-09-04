@@ -10,6 +10,18 @@ const UrlShortener = () => {
   const [url, setUrl] = useState("");
   const [link, setLink] = useState("");
 
+  const checkUrl = (e) => {
+    e.preventDefault();
+    if (url.trim() === "") {
+      return;
+    }
+    if (!url.startsWith("https://")) {
+      alert("The URL must start with https://");
+      return false;
+    }
+    createShortLink();
+  };
+
   const createShortLink = async () => {
     if (url.trim() === "") {
       return;
@@ -37,15 +49,20 @@ const UrlShortener = () => {
 
         <div className="mt-4">
           <h1 className="font-bold">Paste your long link here</h1>
-          <Input
-            placeholder="https://example.com/my-long-url"
-            className="mt-3"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <Button onClick={createShortLink} className="mt-2">
-            Get Your Link For Free
-          </Button>
+          <form onSubmit={checkUrl}>
+            <Input
+              type="url"
+              pattern="https://.*"
+              placeholder="https://example.com/my-long-url"
+              className="mt-3"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              required
+            />
+            <Button onClick={checkUrl} className="mt-2">
+              Get Your Link For Free
+            </Button>
+          </form>
         </div>
         {link && (
           <a
