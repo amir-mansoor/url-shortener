@@ -10,20 +10,28 @@ const app = express();
 const __dirname = path.resolve();
 dotenv.config({ path: __dirname + "/.env" });
 
-const corsOptions = {
-  origin: "http://localhost:5173", // Replace with your frontend's origin
-  methods: ["GET", "POST"], // Allow only GET and POST methods
-};
-
 // Apply CORS middleware with the above options
 app.use(cors());
-app.set("trust proxy", true);
 
 connectDB();
 
 app.use(express.json());
 
 app.use("/api/link", linkRoutes);
+
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "dist", "index.html")
+    );
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("Api running successfully");
+  });
+}
 app.use(notFound);
 
 const PORT = process.env.PORT || 5000;
