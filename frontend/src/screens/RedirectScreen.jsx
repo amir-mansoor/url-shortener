@@ -13,7 +13,9 @@ const RedirectScreen = () => {
     const redirect = async () => {
       if (isMounted) {
         try {
-          const res = await axios.get(`http://localhost:5000/api/link/${id}`);
+          const res = await axios.get(
+            `${import.meta.env.VITE_APP_API_URL}/${id}`
+          );
           window.location.href = res.data;
         } catch (error) {
           console.error("Error fetching the original URL:", error);

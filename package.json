@@ -6,7 +6,9 @@
   "main": "server.js",
   "scripts": {
     "start": "cd frontend && npm run dev",
-    "server": "cd backend && nodemon server.js"
+    "server": "cd backend && nodemon server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "deployStart":"node backend/server.js"
   },
   "author": "Amir Mansoor",
   "license": "ISC",

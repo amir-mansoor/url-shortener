@@ -24,7 +24,9 @@ const LinkScreen = () => {
 
   useEffect(() => {
     const getLinkDetails = async () => {
-      const res = await axios.get(`http://localhost:5000/api/link/link/${id}`);
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_API_URL}/link/${id}`
+      );
       setLinkDetails(res.data);
     };
 

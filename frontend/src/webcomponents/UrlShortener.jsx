@@ -27,7 +27,7 @@ const UrlShortener = () => {
       return;
     }
 
-    const res = await axios.post("http://localhost:5000/api/link/create", {
+    const res = await axios.post(`${import.meta.env.VITE_APP_API_URL}/create`, {
       link: url,
       userid: user?.id,
     });

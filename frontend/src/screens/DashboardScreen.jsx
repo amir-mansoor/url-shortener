@@ -20,7 +20,7 @@ const DashboardScreen = () => {
   useEffect(() => {
     const getLinks = async () => {
       const res = await axios.get(
-        `http://localhost:5000/api/link/links/${user?.id}`
+        `${import.meta.env.VITE_APP_API_URL}/links/${user?.id}`
       );
       setUserLinks(res.data);
     };
